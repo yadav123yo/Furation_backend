@@ -3,6 +3,7 @@ const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+const secreat = process.env.JWT_SECRET || "Yadav123"
 // Define the user schema
 const userSchema = new mongoose.Schema({
   name: {
@@ -27,8 +28,8 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.getjwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_SECRET_KEY_EXPIRE,
+  return jwt.sign({ id: this._id }, secreat, {
+    // expiresIn: process.env.JWT_SECRET,
   });
 };
 
